@@ -11,6 +11,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
+Import-Package: javax.annotation;resolution:=optional
 Bundle-ClassPath: .,lib/snakeyaml-2.2.jar
 Export-Package: com.devsha256.mulelint,
  com.devsha256.mulelint.handlers,

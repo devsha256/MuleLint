@@ -40,20 +40,26 @@ To build the plugin from source, you need **Java 11+** and **Maven** installed.
 
 ## 💻 Installation Instructions
 
+The easiest way to install the plugin is via the `dropins` folder.
+
 ### Windows 11
-1. Close **Anypoint Studio**.
-2. Navigate to your Anypoint Studio installation directory (e.g., `C:\AnypointStudio`).
-3. Locate the `dropins` folder.
-4. Copy the `com.devsha256.mulelint-1.0.0-SNAPSHOT.jar` file into the `dropins` folder.
-5. Restart **Anypoint Studio**.
+1.  Close **Anypoint Studio**.
+2.  Navigate to the folder where you unzipped/installed Anypoint Studio (e.g., `C:\AnypointStudio-7.x\`).
+3.  You will see a folder named **`dropins`** in the same directory as `AnypointStudio.exe`.
+4.  Copy the `com.devsha256.mulelint-1.0.0-SNAPSHOT.jar` file into this **`dropins`** folder.
+5.  Restart **Anypoint Studio**.
 
 ### macOS
-1. Close **Anypoint Studio**.
-2. Go to your **Applications** folder.
-3. Right-click on **AnypointStudio.app** and select **Show Package Contents**.
-4. Navigate to `Contents/Eclipse/dropins`.
-5. Copy the `com.devsha256.mulelint-1.0.0-SNAPSHOT.jar` file into the `dropins` folder.
-6. Restart **Anypoint Studio**.
+1.  Close **Anypoint Studio**.
+2.  Open your **Applications** folder in Finder.
+3.  Right-click on the **AnypointStudio.app** icon and select **Show Package Contents**.
+4.  Navigate to **`Contents` > `Eclipse` > `dropins`**.
+5.  Copy the `com.devsha256.mulelint-1.0.0-SNAPSHOT.jar` file into this **`dropins`** folder.
+6.  Restart **Anypoint Studio**.
+
+> [!TIP]
+> If the plugin does not appear after restarting, try starting Anypoint Studio once with the `-clean` flag or delete the `configuration/org.eclipse.update` folder to force a refresh of the plugin cache.
+
 
 ---
 
