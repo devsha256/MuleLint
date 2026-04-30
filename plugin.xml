@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="com.devsha256.mulelint.commands.category"
+            name="MuleLint Commands">
+      </category>
+      <command
+            categoryId="com.devsha256.mulelint.commands.category"
+            id="com.devsha256.mulelint.commands.validateProject"
+            name="Run Mule Property Validation">
+      </command>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.devsha256.mulelint.commands.validateProject"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+M2+V"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="com.devsha256.mulelint.commands.validateProject"
+               label="Run Mule Property Validation"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false">
+                     <adapt
+                           type="org.eclipse.core.resources.IProject">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      
+      <menuContribution
+            locationURI="toolbar:com.devsha256.mulelint.views.MuleValidationView">
+         <command
+               commandId="com.devsha256.mulelint.commands.validateProject"
+               label="Refresh"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.devsha256.mulelint.handlers.ValidateProjectHandler"
+            commandId="com.devsha256.mulelint.commands.validateProject">
+      </handler>
+   </extension>
+
+   <extension
+         id="mulePropertyMarker"
+         name="Mule Property Validation Problem"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.devsha256.mulelint.preferences.MuleLintPreferencePage"
+            id="com.devsha256.mulelint.preferences.MuleLintPreferencePage"
+            name="MuleLint Configuration">
+      </page>
+   </extension>
+
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.devsha256.mulelint.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="com.devsha256.mulelint.views.category"
+            name="MuleLint">
+      </category>
+      <view
+            category="com.devsha256.mulelint.views.category"
+            class="com.devsha256.mulelint.views.MuleValidationView"
+            id="com.devsha256.mulelint.views.MuleValidationView"
+            name="Mule Property Validation">
+      </view>
+   </extension>
+
+</plugin>

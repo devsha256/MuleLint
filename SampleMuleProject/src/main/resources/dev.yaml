@@ -1,0 +1,6 @@
+customer:
+  zip_default: "929001"
+  name: "John Doe"
+  missing_prop: "missing value"
+http:
+  port: "8081"

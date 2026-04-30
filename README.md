@@ -1,57 +1,80 @@
 # MuleLint
 
-MuleLint is a static code analysis and linting tool for MuleSoft applications.  
-It helps developers detect configuration issues, enforce best practices, and maintain high-quality Mule codebases.
+MuleLint is a powerful static code analysis and property validation plugin for MuleSoft Anypoint Studio (Eclipse).  
+It helps developers detect missing or unused properties early in the development lifecycle, ensuring robust and clean configuration files.
 
 ---
 
 ## 🚀 Features
 
-### ✅ Property Validation (Phase 1)
-- Scans Mule source files:
-  - `*.xml` (Mule configs)
-  - `*.dwl` (DataWeave scripts)
-- Detects property references like:
-  - `Mule::p("customer.zip_default")`
-  - `p('customer.zip_default')`
-- Validates against:
-  - `*.yaml`
-  - `*.yml`
-- Supports:
-  - Nested YAML structures
-  - Flattened property keys
-- Reports:
-  - Missing properties
-  - Valid references
+### ✅ Property Validation
+- **Deep Scanning**: Analyzes `*.xml` and `*.dwl` files for property references (`${}`, `p('')`, `Mule::p('')`).
+- **YAML Intelligence**: Flattens nested YAML configuration files to validate against all possible keys.
+- **Missing Detection**: Flags any property used in code but missing from configuration files.
+- **Unused Detection**: Identifies dead properties in YAML files that are no longer referenced in your project.
+- **Smart Filtering**: Categorize results into **Valid**, **Missing**, and **Unused** using dedicated UI filters.
+- **Real-time Search**: Search through thousands of properties instantly within the custom view.
+
+### 🛠️ Developer Experience
+- **Dedicated View**: A custom "Mule Property Validation" tab for clear reporting.
+- **Problems Integration**: Native Eclipse markers show errors directly on the lines of code.
+- **Auto-Save**: Automatically saves modified editors before validation to ensure accuracy.
+- **Keyboard Shortcut**: Trigger validation instantly with `Ctrl+Shift+V` (Windows/Linux) or `Cmd+Shift+V` (macOS).
 
 ---
 
-## 🎯 Why MuleLint?
+## 🛠️ Packaging the Plugin
 
-Mule applications often rely heavily on externalized configurations.  
-Broken or missing properties can lead to runtime failures that are hard to debug.
+To build the plugin from source, you need **Java 11+** and **Maven** installed.
 
-MuleLint helps you catch these issues **early during development**.
-
----
-
-## 🧩 Planned Features
-
-- 🔍 Additional linting rules (naming conventions, flow structure, etc.)
-- ⚡ Quick fixes (auto-create missing properties)
-- 🧠 Intelligent suggestions (fuzzy matching for typos)
-- 🌍 Environment-aware validation (dev/test/prod configs)
-- 📊 Code quality scoring
-- 🔌 Pluggable rule engine
+1. Clone the repository.
+2. Navigate to the project root directory.
+3. Run the following command:
+   ```bash
+   mvn clean install
+   ```
+4. The compiled plugin JAR will be located at:
+   `target/com.devsha256.mulelint-1.0.0-SNAPSHOT.jar`
 
 ---
 
-## 🛠️ Usage
+## 💻 Installation Instructions
 
-### Eclipse Plugin (Planned)
-- Right-click on a Mule project
-- Run: `MuleLint → Validate Properties`
+### Windows 11
+1. Close **Anypoint Studio**.
+2. Navigate to your Anypoint Studio installation directory (e.g., `C:\AnypointStudio`).
+3. Locate the `dropins` folder.
+4. Copy the `com.devsha256.mulelint-1.0.0-SNAPSHOT.jar` file into the `dropins` folder.
+5. Restart **Anypoint Studio**.
 
-### CLI (Future)
-```bash
-mulelint scan ./my-mule-project
+### macOS
+1. Close **Anypoint Studio**.
+2. Go to your **Applications** folder.
+3. Right-click on **AnypointStudio.app** and select **Show Package Contents**.
+4. Navigate to `Contents/Eclipse/dropins`.
+5. Copy the `com.devsha256.mulelint-1.0.0-SNAPSHOT.jar` file into the `dropins` folder.
+6. Restart **Anypoint Studio**.
+
+---
+
+## 🎯 Usage
+
+1. **Run Validation**: Right-click on any Mule project in the Package Explorer and select **Run Mule Property Validation**, or use the keyboard shortcut `Cmd/Ctrl + Shift + V`.
+2. **View Results**: Open the **Mule Property Validation** view via `Window > Show View > Other... > MuleLint > Mule Property Validation`.
+3. **Filter & Search**: Use the radio buttons at the top of the view to filter by "Errors" or "Warnings," and use the search box to find specific keys.
+4. **Refresh**: Use the **Refresh** icon in the view toolbar to re-run validation on the last project.
+
+---
+
+## ⚙️ Configuration
+
+Customize which files are scanned by going to:
+`Window > Preferences > MuleLint Configuration`
+
+- **Source File Extensions**: (Default: `xml,dwl`)
+- **Target File Extensions**: (Default: `yaml,yml`)
+
+---
+
+## 🧩 License
+Apache License 2.0
