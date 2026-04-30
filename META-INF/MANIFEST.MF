@@ -6,9 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.devsha256.mulelint.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.core.resources,
- org.eclipse.jface.text,
- org.eclipse.ui.ide
+ org.eclipse.core.resources
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.annotation;resolution:=optional
